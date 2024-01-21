@@ -12,7 +12,9 @@ public class HealthResource {
     @GET
     @Path("health")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response health() {
+    public Response health()
+    {
+        System.out.println("Hello, world!");
         return Response.ok(new HealthResponse("ok")).build();
     }
 }
