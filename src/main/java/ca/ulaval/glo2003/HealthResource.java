@@ -3,6 +3,10 @@ package ca.ulaval.glo2003;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Path("")
 public class HealthResource {
@@ -86,10 +90,43 @@ public class HealthResource {
     }
 
     @GET
-    @Path("products6/{id}")
-    public Response products6(@PathParam("id") String id)
+    @Path("products6")
+    public Response products6()
     {
-        System.out.println("404");
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.status(200).header("a header", "with a message").build();
+    }
+
+    @GET
+    @Path("products7")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response products7()
+    {
+        Product product = new Product("pro1", "first pro", 10.00f, true );
+        return Response.ok(product).build();
+    }
+
+    @GET
+    @Path("products8")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response products8()
+    {
+        List<Product> products = new ArrayList<Product>()
+                {{
+                        add(new Product("pro1", "first pro", 10.00f, true ));
+                        add(new Product("pro2", "second pro", -10.00f, true ));
+                        add(new Product("pro3", "third pro", 20.00f, false ));
+                }};
+
+        return Response.ok(products).build();
+    }
+
+    @GET
+    @Path("products9")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response products9()
+    {
+        LocalDateTime dateTime = LocalDateTime.now();
+        ComplexProduct product = new ComplexProduct("pro1", "first pro", 10.00f, true, dateTime );
+        return Response.ok(product).build();
     }
 }

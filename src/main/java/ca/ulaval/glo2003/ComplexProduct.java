@@ -2,9 +2,10 @@ package ca.ulaval.glo2003;
 
 import jakarta.json.bind.annotation.JsonbProperty;
 
-public class Product
+import java.time.LocalDateTime;
+
+public class ComplexProduct
 {
-    @JsonbProperty("title")
     private String title;
 
     @JsonbProperty("description")
@@ -16,14 +17,17 @@ public class Product
     @JsonbProperty("sold")
     private boolean sold;
 
-    public Product() {}
+    private LocalDateTime dateTime;
 
-    public Product(String title, String description, float price, boolean sold)
+    public ComplexProduct() {}
+
+    public ComplexProduct(String title, String description, float price, boolean sold, LocalDateTime dateTime)
     {
         this.title = title;
         this.description = description;
         this.price = price;
         this.sold = sold;
+        this.dateTime = dateTime;
     }
 
     public void setTitle(String title) {
@@ -42,6 +46,8 @@ public class Product
         this.sold = sold;
     }
 
+    public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
+
     public String getTitle() {
         return title;
     }
@@ -56,5 +62,9 @@ public class Product
 
     public boolean isSold() {
         return sold;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 }
